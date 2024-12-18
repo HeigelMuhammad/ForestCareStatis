@@ -3,31 +3,49 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
 import AdminNavbar from "../components/AdminNavbar";
-import axios from "axios";
-import { Link } from "react-router-dom";
 
 export function AdminDashboard() {
   const navigate = useNavigate();
-  const [items, setItems] = useState([]); // State to store list of items
-  const [loading, setLoading] = useState(true); // Loading state
-  const [error, setError] = useState(null); // Error state
+  const [items, setItems] = useState([]); // State untuk menyimpan daftar laporan
+  const [loading, setLoading] = useState(true); // Status loading
+  const [error, setError] = useState(null); // Status error
 
   const [currentPage, setCurrentPage] = useState(1);
   const rowsPerPage = 10;
 
-  useEffect(() => {
-    const fetchItems = async () => {
-      try {
-        const response = await axios.get("http://127.0.0.1:8000/api/pelaporan/read");
-        setItems(response.data.data);
-      } catch (err) {
-        setError("Failed to load items");
-      } finally {
-        setLoading(false);
-      }
-    };
+  // Data dummy
+  const dummyData = [
+    {
+      id: 1,
+      jenis_aktivitas: "Penebangan Liar",
+      kecamatan: "Kepanjen",
+      tanggal_kejadian: "2024-12-15",
+      status: "Diproses",
+    },
+    {
+      id: 2,
+      jenis_aktivitas: "Perburuan Liar",
+      kecamatan: "Cileunyi",
+      tanggal_kejadian: "2024-12-12",
+      status: "Selesai",
+    },
+    {
+      id: 3,
+      jenis_aktivitas: "Pembuangan Limbah",
+      kecamatan: "Wonokromo",
+      tanggal_kejadian: "2024-12-10",
+      status: "Menunggu",
+    },
+    // Tambahkan lebih banyak data dummy sesuai kebutuhan
+  ];
 
-    fetchItems();
+  useEffect(() => {
+    // Simulasi fetching data menggunakan data dummy
+    setLoading(true);
+    setTimeout(() => {
+      setItems(dummyData);
+      setLoading(false);
+    }, 1000); // Simulasi waktu loading
   }, []);
 
   const handleNextPage = () => {
@@ -39,22 +57,17 @@ export function AdminDashboard() {
   };
 
   const handleEdit = (id) => {
-    navigate(`/edit-laporan-admin/${id}`); // Navigate to edit report page
+    navigate(`/edit-laporan-admin/${id}`); // Navigasi ke halaman edit laporan
   };
 
   const handleDetail = (id) => {
-    navigate(`/DetailLaporanAdmin/${id}`); // Navigate to report details page
+    navigate(`/DetailLaporanAdmin/${id}`); // Navigasi ke halaman detail laporan
   };
 
-  const handleDelete = async (id) => {
-    if (window.confirm("Are you sure you want to delete this item?")) {
-      try {
-        await axios.delete(`http://127.0.0.1:8000/api/pelaporan/delete/${id}`); // Correct API endpoint for deletion
-        setItems(items.filter((item) => item.id !== id));
-        alert("Item deleted successfully");
-      } catch (err) {
-        alert("Failed to delete item");
-      }
+  const handleDelete = (id) => {
+    if (window.confirm("Apakah Anda yakin ingin menghapus laporan ini?")) {
+      setItems(items.filter((item) => item.id !== id));
+      alert("Laporan berhasil dihapus.");
     }
   };
 
@@ -118,7 +131,6 @@ export function AdminDashboard() {
                     <td className="px-6 py-4 gap-1">
                       <button
                         onClick={() => handleDetail(item.id)}
-                        to={`/pelaporan/detail/${item.id}`}
                         className="py-2 px-4 bg-orange text-white rounded-full hover:bg-orange-600"
                       >
                         Detail

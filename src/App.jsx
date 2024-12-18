@@ -30,6 +30,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/Login" element={<Login />} />
             <Route path="/Register" element={<Register />} />
+
             <Route path="/AdminDashboard" element={<AdminDashboard />} />
             <Route path="/AdminLogin" element={<AdminLogin />} />
             <Route path="/AdminNav" element={<AdminNavbar />} />
@@ -41,7 +42,7 @@ function App() {
             <Route path="/TambahPolhut" element={<TambahPolhut />} />
             <Route path="/RiwayatLaporan" element={<RiwayatLaporan />} />
             <Route path="/riwayat-laporan/:id" element={<DetailLaporan />} />
-            <Route path="/edit-laporan-admin/:id" element={<EditLaporan />} />
+            <Route path="/edit-laporan-admin" element={<EditLaporan />} />
             <Route path="/Tabel-Polisi-Hutan" element={<PolisiHutan />} />
             <Route path="/edit-polhut" element={<EditPolhut />} />
             <Route path="/tambah-admin" element={<TambahAdmin />} />

@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
-import axios from "axios";
 
 function Register() {
   const [formRegister, setFormRegister] = useState({
@@ -23,10 +22,10 @@ function Register() {
     }));
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
-    const { username, email, password, confirmPassword } = formRegister;
+    const { username, password, confirmPassword } = formRegister;
 
     if (password !== confirmPassword) {
       setErrorMessage("Password tidak cocok");
@@ -36,36 +35,19 @@ function Register() {
     setErrorMessage("");
     setLoading(true);
 
-    try {
-      const response = await axios.post("http://127.0.0.1:8000/auth/register", {
-        name: username,
-        email: email,
-        password: password,
-        password_confirmation: confirmPassword,
+    // Simulasi proses registrasi
+    setTimeout(() => {
+      // Simulasi sukses
+      alert(`Registrasi berhasil! Selamat datang, ${username}`);
+      setFormRegister({
+        username: "",
+        email: "",
+        password: "",
+        confirmPassword: "",
       });
-
-      if (response.status === 201) {
-        alert("Registrasi berhasil! Selamat datang, " + username);
-        setFormRegister({
-          username: "",
-          email: "",
-          password: "",
-          confirmPassword: "",
-        });
-      }
-      navigate("/");
-    } catch (err) {
-      if (err.response && err.response.data.errors) {
-        setErrorMessage(
-          err.response.data.errors.general ||
-            "Terjadi kesalahan saat registrasi"
-        );
-      } else {
-        setErrorMessage("Gagal menghubungi server. Silakan coba lagi.");
-      }
-    } finally {
       setLoading(false);
-    }
+      navigate("/");
+    }, 2000); // Delay 2 detik untuk simulasi proses
   };
 
   return (
@@ -158,6 +140,13 @@ function Register() {
             {loading ? "Processing..." : "Sign Up"}
           </button>
         </form>
+
+        <p className="mt-4 text-center text-gray-600">
+          Sudah memiliki akun?{" "}
+          <a href="/login" className="text-black font-semibold">
+            Login
+          </a>
+        </p>
       </div>
     </div>
   );

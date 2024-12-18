@@ -55,7 +55,7 @@ const KabupatenList = ({ provinsiId, onKabupatenSelect }) => {
     >
       <option value="">Pilih Kabupaten/Kota</option>
       {kabupatenList.map((kabupaten) => (
-        <option key={kabupaten.id} value={kabupaten.id}>
+        <option key={kabupaten.id} value={kabupaten.name}>
           {kabupaten.name}
         </option>
       ))}

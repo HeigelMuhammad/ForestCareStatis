@@ -1,17 +1,38 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
 import AdminNavbar from "../components/AdminNavbar";
-import axios from "axios";
 
 export function PolisiHutan() {
   const navigate = useNavigate();
-  const [data, setData] = useState([]); // Data fetched from API
+
+  // Data dummy
+  const [data, setData] = useState([
+    {
+      nip: "123456789",
+      nama: "John Doe",
+      foto: "foto1.jpg",
+    },
+    {
+      nip: "987654321",
+      nama: "Jane Smith",
+      foto: "foto2.jpg",
+    },
+    {
+      nip: "456789123",
+      nama: "Michael Johnson",
+      foto: "foto3.jpg",
+    },
+    {
+      nip: "789123456",
+      nama: "Emily Davis",
+      foto: "foto4.jpg",
+    },
+  ]);
+
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 3;
-  const [loading, setLoading] = useState(true); // Loading state
-  const [error, setError] = useState(null); // Error state
 
   const totalPages = Math.ceil(data.length / itemsPerPage);
   const displayedData = data.slice(
@@ -19,34 +40,14 @@ export function PolisiHutan() {
     currentPage * itemsPerPage
   );
 
-  useEffect(() => {
-    const fetchItems = async () => {
-      try {
-        const response = await axios.get("http://127.0.0.1:8000/api/polhut/read");
-        setData(response.data.data);
-      } catch (err) {
-        setError("Failed to load items");
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchItems();
-  }, []);
-
   const handleEdit = (nip) => {
-    navigate(`/edit-polhut/${nip}`); // Navigate to edit report page
+    navigate(`/edit-polhut/${nip}`);
   };
 
-  const handleDelete = async (nip) => {
+  const handleDelete = (nip) => {
     if (window.confirm("Are you sure you want to delete this item?")) {
-      try {
-        await axios.delete(`http://127.0.0.1:8000/api/polhut/delete/${nip}`); // Correct API endpoint for deletion
-        setData(data.filter((item) => item.nip !== nip));
-        alert("Item deleted successfully");
-      } catch (err) {
-        alert("Failed to delete item");
-      }
+      setData(data.filter((item) => item.nip !== nip));
+      alert("Item deleted successfully");
     }
   };
 
@@ -57,14 +58,6 @@ export function PolisiHutan() {
   const handleNextPage = () => {
     if (currentPage < totalPages) setCurrentPage(currentPage + 1);
   };
-
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
-  if (error) {
-    return <div>{error}</div>;
-  }
 
   return (
     <div>
@@ -118,7 +111,7 @@ export function PolisiHutan() {
                     <td className="px-6 py-4">{item.nip}</td>
                     <td className="px-6 py-4">
                       <img
-                        src={`http://127.0.0.1:8000/storage/${item.foto}`}
+                        src={`path/to/images/${item.foto}`}
                         alt={`Foto ${item.nama}`}
                         className="w-16 h-16 rounded-full object-cover"
                       />

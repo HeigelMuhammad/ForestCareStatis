@@ -34,31 +34,30 @@ const ProvinsiList = ({ onProvinsiSelect }) => {
   if (error) return <p>Error: {error}</p>;
 
   return (
-<div className="space-y-4">
-  <div>
-    <label
-      htmlFor="provinsi"
-      className="block text-gray-700 text-sm font-semibold mb-2"
-    >
-      Provinsi
-    </label>
-    <select
-      id="provinsi"
-      name="provinsi"
-      onChange={(e) => onProvinsiSelect(e.target.value)}
-      className="w-full p-3 border border-gray-300 rounded-xl focus:outline-none focus:border-[#A1A890] bg-white"
-      required
-    >
-      <option value="">Pilih Provinsi</option>
-      {provinsiList.map((provinsi) => (
-        <option key={provinsi.id} value={provinsi.id}>
-          {provinsi.name}
-        </option>
-      ))}
-    </select>
-  </div>
-</div>
-
+    <div className="space-y-4">
+      <div>
+        <label
+          htmlFor="provinsi"
+          className="block text-gray-700 text-sm font-semibold mb-2"
+        >
+          Provinsi
+        </label>
+        <select
+          id="provinsi"
+          name="provinsi"
+          onChange={(e) => onProvinsiSelect(e.target.value)}
+          className="w-full p-3 border border-gray-300 rounded-xl focus:outline-none focus:border-[#A1A890] bg-white"
+          required
+        >
+          <option value="">Pilih Provinsi</option>
+          {provinsiList.map((provinsi) => (
+            <option key={provinsi.id} value={provinsi.name}>
+              {provinsi.name}
+            </option>
+          ))}
+        </select>
+      </div>
+    </div>
   );
 };
 

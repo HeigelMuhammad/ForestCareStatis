@@ -1,8 +1,6 @@
 import { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import axios from "axios";
-
 
 function RiwayatLaporan() {
   const [items, setItems] = useState([]); // State to store list of items
@@ -10,11 +8,32 @@ function RiwayatLaporan() {
   const [error, setError] = useState(null); // Error state
 
   useEffect(() => {
-    const fetchItems = async () => {
+    // Simulasi pengambilan data dengan data dummy
+    const fetchItems = () => {
       try {
-        const response = await axios.get("http://127.0.0.1:8000/api/pelaporan/read");
-        setItems(response.data.data);
-      } catch (err) {
+        const dummyData = [
+          {
+            id: 1,
+            jenis_aktivitas: "Pencemaran Lingkungan",
+            tanggal_kejadian: "2024-12-10",
+            status: "Selesai",
+          },
+          {
+            id: 2,
+            jenis_aktivitas: "Kebakaran Hutan",
+            tanggal_kejadian: "2024-12-15",
+            status: "Proses",
+          },
+          {
+            id: 3,
+            jenis_aktivitas: "Kerusakan Jalan",
+            tanggal_kejadian: "2024-12-01",
+            status: "Selesai",
+          },
+        ];
+
+        setItems(dummyData);
+      } catch {
         setError("Failed to load items");
       } finally {
         setLoading(false);

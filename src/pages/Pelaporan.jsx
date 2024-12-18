@@ -2,8 +2,6 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import axios from "axios";
-
 import ProvinsiList from "../components/Lokasi/ProvinsiList";
 import KabupatenList from "../components/Lokasi/KabupatenList";
 import KecamatanList from "../components/Lokasi/KecamatanList";
@@ -40,7 +38,7 @@ function Pelaporan() {
     });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
     const {
@@ -71,31 +69,10 @@ function Pelaporan() {
       return;
     }
 
-    const formData = new FormData();
-    formData.append("jenis_aktivitas", jenisAktivitas);
-    formData.append("nomor_telepon", NomorTelepon);
-    formData.append("provinsi", Provinsi);
-    formData.append("kabupaten", Kabupaten);
-    formData.append("kecamatan", Kecamatan);
-    formData.append("kelurahan", Kelurahan);
-    formData.append("tanggal_kejadian", TanggalKejadian);
-    formData.append("deskripsi", Deskripsi);
-    formData.append("file_path", FileBukti);
-
-    try {
-      await axios.post("http://127.0.0.1:8000/api/pelaporan/create", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
-
-      alert("Pelaporan berhasil disimpan!");
-      navigate("/RiwayatLaporan");
-    } catch (error) {
-      console.error("Error Response:", error.response?.data || error.message);
-      setErrorMessage("Terjadi kesalahan saat menyimpan data: " + (error.response?.data?.message || error.message));
-    }
-    
+    // Simulasi data yang berhasil disimpan tanpa API
+    console.log("Pelaporan berhasil disimpan:", formPelaporan);
+    alert("Pelaporan berhasil disimpan!");
+    navigate("/RiwayatLaporan");
   };
 
   return (

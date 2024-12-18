@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import AdminNavbar from "../components/AdminNavbar";
 import Footer from "../components/Footer";
-import axios from "axios";
 
 function DetailLaporanAdmin() {
   const { id } = useParams(); // ID laporan dari URL
@@ -10,19 +9,47 @@ function DetailLaporanAdmin() {
   const [loading, setLoading] = useState(true); // Status loading
   const [error, setError] = useState(null); // Error handling
 
-  useEffect(() => {
-    const fetchLaporan = async () => {
-      try {
-        const response = await axios.get(`http://127.0.0.1:8000/api/pelaporan/read/${id}`);
-        setPelaporan(response.data.data); // Set the item data into state
-        setLoading(false); // Set loading state to false
-      } catch (err) {
-        setError("Item not found!"); // Set error if something goes wrong
-        setLoading(false); // Set loading state to false
-      }
-    };
+  // Data dummy
+  const dummyData = {
+    1: {
+      jenis_aktivitas: "Penebangan Liar",
+      nomor_telepon: "081234567890",
+      provinsi: "Jawa Timur",
+      kabupaten: "Malang",
+      kecamatan: "Kepanjen",
+      kelurahan: "Ngadilangkung",
+      tanggal_kejadian: "2024-12-15",
+      deskripsi: "Ada aktivitas penebangan liar di hutan daerah Ngadilangkung.",
+      status: "Diproses",
+      file_path: "contoh-foto.jpg",
+    },
+    2: {
+      jenis_aktivitas: "Perburuan Liar",
+      nomor_telepon: "082134567890",
+      provinsi: "Jawa Barat",
+      kabupaten: "Bandung",
+      kecamatan: "Cileunyi",
+      kelurahan: "Cibiru",
+      tanggal_kejadian: "2024-12-12",
+      deskripsi: "Perburuan liar terjadi di sekitar hutan lindung Bandung.",
+      status: "Selesai",
+      file_path: null,
+    },
+  };
 
-    fetchLaporan();
+  useEffect(() => {
+    // Simulasi fetching data dari server menggunakan ID
+    setLoading(true);
+    setTimeout(() => {
+      const laporan = dummyData[id];
+      if (laporan) {
+        setPelaporan(laporan);
+        setError(null);
+      } else {
+        setError("Laporan tidak ditemukan!");
+      }
+      setLoading(false);
+    }, 1000); // Simulasi waktu loading
   }, [id]);
 
   if (loading) {

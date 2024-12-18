@@ -8,49 +8,38 @@ function EditLaporan() {
   const navigate = useNavigate();
   const [laporan, setLaporan] = useState(null); // Data laporan
   const [status, setStatus] = useState(""); // Status laporan
-  const [polisiHutan, setPolisiHutan] = useState([]); // Data polisi hutan dari database
+  const [polisiHutan, setPolisiHutan] = useState([]); // Data polisi hutan dari dummy
   const [selectedNip, setSelectedNip] = useState(""); // NIP polisi hutan yang dipilih
   const [errorMessage, setErrorMessage] = useState("");
-  
 
-  // Simulasi pengambilan data laporan dan polisi hutan
   useEffect(() => {
-    // Fetch data laporan berdasarkan ID
-    const fetchLaporan = async () => {
-      const laporanDummy = {
-        id: id,
-        tanggalKirim: "2024-11-28",
-        namaPelapor: "Budi Santoso",
-        noTelepon: "08123456789",
-        jenisAktivitas: "Penebangan Liar",
-        lokasi: {
-          provinsi: "Jawa Tengah",
-          kabupaten: "Karanganyar",
-          kecamatan: "Tawangmangu",
-          desa: "Sidoharjo",
-        },
-        tanggalKejadian: "2024-11-20",
-        deskripsi: "Penebangan liar di area hutan lindung.",
-        fotoBukti: "https://via.placeholder.com/150",
-        status: "Pending",
-      };
-
-      setLaporan(laporanDummy);
-      setStatus(laporanDummy.status);
+    // Fetch data laporan berdasarkan ID (dummy data)
+    const laporanDummy = {
+      id: id,
+      tanggalKirim: "2024-11-28",
+      namaPelapor: "Budi Santoso",
+      noTelepon: "08123456789",
+      jenisAktivitas: "Penebangan Liar",
+      lokasi: {
+        provinsi: "Jawa Tengah",
+        kabupaten: "Karanganyar",
+        kecamatan: "Tawangmangu",
+        desa: "Sidoharjo",
+      },
+      tanggalKejadian: "2024-11-20",
+      deskripsi: "Penebangan liar di area hutan lindung.",
+      fotoBukti: "https://via.placeholder.com/150",
+      status: "Pending",
     };
 
-    // Fetch data polisi hutan
-    const fetchPolisiHutan = async () => {
-      const polisiHutanDummy = [
-        { nip: "123456789", nama: "Polisi Hutan A" },
-        { nip: "987654321", nama: "Polisi Hutan B" },
-      ];
+    const polisiHutanDummy = [
+      { nip: "123456789", nama: "Polisi Hutan A" },
+      { nip: "987654321", nama: "Polisi Hutan B" },
+    ];
 
-      setPolisiHutan(polisiHutanDummy);
-    };
-
-    fetchLaporan();
-    fetchPolisiHutan();
+    setLaporan(laporanDummy);
+    setStatus(laporanDummy.status);
+    setPolisiHutan(polisiHutanDummy);
   }, [id]);
 
   const handleSubmit = (event) => {
@@ -67,7 +56,7 @@ function EditLaporan() {
     }
 
     setErrorMessage("");
-    alert("Laporan berhasil diperbarui!");
+    alert(`Laporan berhasil diperbarui!\n\nStatus: ${status}\nPolisi Hutan: ${selectedNip}`);
     navigate("/AdminDashboard"); // Kembali ke dashboard
   };
 
@@ -100,7 +89,8 @@ function EditLaporan() {
                 <strong>Jenis Aktivitas:</strong> {laporan.jenisAktivitas}
               </p>
               <p>
-                <strong>Lokasi:</strong> {`${laporan.lokasi.desa}, ${laporan.lokasi.kecamatan}, ${laporan.lokasi.kabupaten}, ${laporan.lokasi.provinsi}`}
+                <strong>Lokasi:</strong>{" "}
+                {`${laporan.lokasi.desa}, ${laporan.lokasi.kecamatan}, ${laporan.lokasi.kabupaten}, ${laporan.lokasi.provinsi}`}
               </p>
               <p>
                 <strong>Tanggal Kejadian:</strong> {laporan.tanggalKejadian}

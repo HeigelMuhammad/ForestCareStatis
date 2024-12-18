@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import AdminNavbar from "../components/AdminNavbar";
 import Footer from "../components/Footer";
-import axios from "axios";
 
 function TambahPolhut() {
   const [formPolhut, setFormPolhut] = useState({
@@ -30,7 +29,7 @@ function TambahPolhut() {
     });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
     const { nip, nama, foto } = formPolhut;
@@ -40,30 +39,20 @@ function TambahPolhut() {
       return;
     }
 
-    const formData = new FormData();
-    formData.append("nip", nip);
-    formData.append("nama", nama);
-    formData.append("foto", foto);
+    // Simulasi penyimpanan data
+    const dummyDatabase = JSON.parse(localStorage.getItem("polhutData")) || [];
+    const newEntry = { id: Date.now(), nip, nama, foto: foto.name };
 
-    try {
-      await axios.post("http://127.0.0.1:8000/api/polhut/create", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
+    dummyDatabase.push(newEntry);
+    localStorage.setItem("polhutData", JSON.stringify(dummyDatabase));
 
-      setSuccessMessage("Data polisi hutan berhasil disimpan!");
-      setErrorMessage("");
-      setFormPolhut({ nip: "", nama: "", foto: null });
+    setSuccessMessage("Data polisi hutan berhasil disimpan!");
+    setErrorMessage("");
+    setFormPolhut({ nip: "", nama: "", foto: null });
 
-      setTimeout(() => {
-        navigate("/Tabel-Polisi-Hutan");
-      }, 2000); // Arahkan setelah 2 detik
-    } catch (error) {
-      console.error(error);
-      setErrorMessage("Terjadi kesalahan saat menyimpan data.");
-      setSuccessMessage("");
-    }
+    setTimeout(() => {
+      navigate("/Tabel-Polisi-Hutan"); // Arahkan ke halaman tabel
+    }, 2000); // Arahkan setelah 2 detik
   };
 
   return (
