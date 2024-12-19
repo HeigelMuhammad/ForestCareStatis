@@ -66,7 +66,7 @@ function Navbar() {
             className="flex items-center space-x-3 rtl:space-x-reverse"
           >
             <img
-              src="src/assets/logoforest.svg"
+              src="assets/logoforest.svg"
               className="h-7"
               alt="Forest Care Logo"
             />

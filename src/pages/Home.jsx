@@ -58,7 +58,7 @@ function Home() {
         {["Deforestasi", "Reforestasi", "Berita Lain..."].map(
           (title, index) => {
             const images = [
-              // "assets/Deforestasi.jpg",
+              "assets/Deforestasi.jpg",
               "assets/Reforestasi.jpg",
               "assets/berita.jpg",
             ];
