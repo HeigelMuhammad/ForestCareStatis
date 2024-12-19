@@ -8,7 +8,7 @@ export function AdminDashboard() {
   const navigate = useNavigate();
   const [items, setItems] = useState([]); // State untuk menyimpan daftar laporan
   const [loading, setLoading] = useState(true); // Status loading
-  const [error, setError] = useState(null); // Status error
+  const [error] = useState(null); // Status error
 
   const [currentPage, setCurrentPage] = useState(1);
   const rowsPerPage = 10;
