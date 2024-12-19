@@ -59,7 +59,7 @@ function Reforestasi() {
             </div>
             <div className="flex justify-center lg:justify-end">
               <img
-                src="src/assets/ReforestasiPage.jpg"
+                src="assets/ReforestasiPage.jpg"
                 alt="Reforest"
                 className="h-96 w-3/4 rounded-2xl"
               />
@@ -100,15 +100,15 @@ function Reforestasi() {
             {[
               {
                 title: "Mencegah Perubahan Iklim",
-                image: "src/assets/awan.jpg",
+                image: "assets/awan.jpg",
               },
               {
                 title: "Mengembalikan Habitat Satwa Liar",
-                image: "src/assets/satwa.jpg",
+                image: "assets/satwa.jpg",
               },
               {
                 title: "Menyediakan Sumber Air Bersih",
-                image: "src/assets/sumber air.jpg",
+                image: "assets/sumber air.jpg",
               },
             ].map((card, index) => (
               <div
@@ -166,15 +166,15 @@ function Reforestasi() {
             {[
               {
                 title: "Penanaman Pohon di Hutan Produksi",
-                image: "src/assets/berita.jpg",
+                image: "assets/berita.jpg",
               },
               {
                 title: "Rehabilitasi Hutan Mangrove",
-                image: "src/assets/rehab mangrove.jpg",
+                image: "assets/rehab mangrove.jpg",
               },
               {
                 title: "Kerja Sama Komunitas Lokal",
-                image: "src/assets/kerja sama.jpg",
+                image: "assets/kerja sama.jpg",
               },
             ].map((card, index) => (
               <div

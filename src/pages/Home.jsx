@@ -30,7 +30,7 @@ function Home() {
       <div className="relative py-8 mx-4 sm:mx-10 lg:mx-40 -mt-32 xs:mt-56 overflow-hidden rounded-3xl">
         <img
           alt="Home Page"
-          src="src/assets/HomePage.jpg"
+          src="assets/HomePage.jpg"
           className="w-full h-[300px] sm:h-[500px] md:h-[700px] lg:h-[500px] object-cover rounded-3xl"
         />
       </div>
@@ -58,9 +58,9 @@ function Home() {
         {["Deforestasi", "Reforestasi", "Berita Lain..."].map(
           (title, index) => {
             const images = [
-              "src/assets/Deforestasi.jpg",
-              "src/assets/Reforestasi.jpg",
-              "src/assets/berita.jpg",
+              "assets/Deforestasi.jpg",
+              "assets/Reforestasi.jpg",
+              "assets/berita.jpg",
             ];
             return (
               <article
@@ -119,7 +119,7 @@ function Home() {
             <div className="lg:py-24 flex justify-center">
               <div className="relative overflow-hidden rounded-2xl shadow-md transition-transform duration-300 ease-in-out hover:shadow-lg hover:scale-105 w-full sm:w-80 md:w-[350px] lg:w-[400px] h-[400px] sm:h-[500px] cursor-pointer">
                 <img
-                  src="src/assets/HomePage.jpg"
+                  src="assets/HomePage.jpg"
                   alt="Forest Image"
                   className="absolute inset-0 h-full w-full object-cover rounded-3xl bg-gradient-to-t from-gray-900/70 to-gray-900/25"
                 />
