@@ -59,7 +59,7 @@ function Deforestasi() {
             </div>
             <div className="flex justify-center lg:justify-end">
               <img
-                src="src/assets/DeforestasiPage.jpg"
+                src="assets/DeforestasiPage.jpg"
                 alt="Reforest"
                 className="h-96 w-3/4 rounded-2xl"
               />
@@ -98,15 +98,15 @@ function Deforestasi() {
             {[
               {
                 title: "Pembukaan Lahan untuk Pertanian",
-                image: "src/assets/lahan-pertanian.jpg",
+                image: "assets/lahan-pertanian.jpg",
               },
               {
                 title: "Pembangunan Infrastruktur",
-                image: "src/assets/infrastruktur.jpg",
+                image: "assets/infrastruktur.jpg",
               },
               {
                 title: "Pertambangan",
-                image: "src/assets/pertambangan.jpg",
+                image: "assets/pertambangan.jpg",
               },
             ].map((card, index) => (
               <div
@@ -164,15 +164,15 @@ function Deforestasi() {
             {[
               {
                 title: "Perubahan Iklim",
-                image: "src/assets/iklim.jpg",
+                image: "assets/iklim.jpg",
               },
               {
                 title: "Hilangnya Keanekaragaman Hayati",
-                image: "src/assets/hilang-anekaragam.jpg",
+                image: "assets/hilang-anekaragam.jpg",
               },
               {
                 title: "Gangguan pada Siklus Air",
-                image: "src/assets/gangguan-air.jpg",
+                image: "assets/gangguan-air.jpg",
               },
             ].map((card, index) => (
               <div
